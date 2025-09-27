@@ -1,19 +1,22 @@
 pre-push:
-  commands:
-    branch:
-      run: bun run branch.mjs
+  parallel: true
+  jobs:
+    - name: Branch Name Check
+      run: node branch.mjs
 
 pre-commit:
-  commands:
-    branch:
-      run: bun run branch.mjs
+  parallel: true
 
-    prettier:
+  jobs:
+    - name: Branch Name Check
+      run: node branch.mjs
+
+    - name: prettier
       glob: '*.{js,ts,jsx,tsx,mjs,cjs}'
-      run: bun prettier {staged_files} --write
+      run: bunx prettier {staged_files} --write
       stage_fixed: true
 
-    lint:
+    - name: Linter
       glob: '*.{js,ts,jsx,tsx,mjs,cjs}'
-      run: bunx lint {staged_files} --fix
+      run: bun lint {staged_files} --fix
       stage_fixed: true
