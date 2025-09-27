@@ -1,5 +1,11 @@
 pre-commit:
-  jobs:
-    - name: lint
-      files: git diff --name-only HEAD @{push}
-      run: bun run lint
+  commands:
+    prettier:
+      glob: '*.{js,ts,jsx,tsx,mjs,cjs}'
+      run: bun prettier {staged_files} --write
+      stage_fixed: true
+
+    lint:
+      glob: '*.{js,ts,jsx,tsx,mjs,cjs}'
+      run: bunx lint --fix {staged_files}
+      stage_fixed: true
