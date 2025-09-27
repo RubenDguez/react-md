@@ -1,5 +1,8 @@
 pre-commit:
   commands:
+    branch:
+      run: bun run branch.mjs
+      
     prettier:
       glob: '*.{js,ts,jsx,tsx,mjs,cjs}'
       run: bun prettier {staged_files} --write
