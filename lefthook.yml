@@ -1,4 +1,5 @@
 pre-commit:
   jobs:
     - name: lint
+      files: git diff --name-only HEAD @{push}
       run: bun run lint
