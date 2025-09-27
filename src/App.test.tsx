@@ -12,6 +12,6 @@ describe('App', () => {
   });
 
   it('renders the App component', () => {
-    expect(screen.getByText('Hello World!!!')).toBeInTheDocument();
+    expect(screen.getByText('Hola Mundo')).toBeInTheDocument();
   });
 });
